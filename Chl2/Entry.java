@@ -1,5 +1,3 @@
-package MainWindow;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -116,7 +114,7 @@ class SpacePanel extends JPanel implements MouseMotionListener
 		timer = new Timer(2, new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				double k = 2/1000;
+				double k = 0.002;
 				
 				helloWorld.position[0] += helloWorld.velocity[0]*k;
 				helloWorld.position[1] += helloWorld.velocity[1]*k;
