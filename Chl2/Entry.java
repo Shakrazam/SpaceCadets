@@ -11,13 +11,12 @@ import javax.imageio.*;
 
 public class Entry
 {
-	
 	public Entry()
 	{
 		initComponents();//initialises components, called at the start of the program
 	}
 	
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{	
 		//runs the program
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
@@ -78,7 +77,7 @@ class GravityObject//object with mass, which has methods for the physics calcula
 		
 		double r = Math.sqrt(accVector[0]*accVector[0] + accVector[1]*accVector[1]);//length of the vector
 		
-		double a = Math.pow(10, -10)*6.67408*mouseMass/r;//scalar value of the acceleration
+		double a = Math.pow(10, -11)*6.67408*mouseMass/(r*r);//scalar value of the acceleration
 		
 		//first makes it a unit vector, then multiplys it to the scalar of the acceleration to get the acceleration vector
 		accVector[0] = -(accVector[0]/r)*a;
@@ -104,8 +103,8 @@ class SpacePanel extends JPanel implements MouseMotionListener
 	private int mouseX = 0;
 	private int mouseY = 0;
 	
-	private double mouseMass = 1000000000000000.0;//random number for the mass of the pointer
-	private GravityObject helloWorld = new GravityObject(100000, 0, 100 , 500, 0);//arbitrary values in the constructor
+	private double mouseMass = 500000000000000000.0;//random number for the mass of the pointer
+	private GravityObject helloWorld = new GravityObject(100000, 0, 100 , 600, 0);//arbitrary values in the constructor
 	
 	public SpacePanel(Image image)
 	{
@@ -136,13 +135,14 @@ class SpacePanel extends JPanel implements MouseMotionListener
 		super.paintComponent(g);//invokes the paintComponent method of JPanel
 		
 		Graphics2D g2d = (Graphics2D) g;
+			
+		g2d.drawImage(background, 0, 0, 1340, 720, this);
 		
+		g2d.setColor(Color.white);
 		g2d.setRenderingHint(
 		        RenderingHints.KEY_TEXT_ANTIALIASING,
 		        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		g2d.drawImage(background, 0, 0, 1340, 720, this);
-		g2d.setColor(Color.white);
-		g2d.setFont(new Font("Franklin Gothic Demi", Font.PLAIN, 20));
+		g2d.setFont(new Font("Franklin Gothic Demi", Font.PLAIN, 25));
 		
 		g2d.drawString("HelloWorld!", (int)helloWorld.position[0], (int)helloWorld.position[1]);
 	}
